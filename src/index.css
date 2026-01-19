@@ -1,0 +1,25 @@
+
+/* Reset and global styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  color: black;
+  font-family: 'Times New Roman', Times, serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure font is available (standard web safe font, usually pre-installed) */
+
+/* Helper to center the app if needed, though pages handle their own layout */
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
