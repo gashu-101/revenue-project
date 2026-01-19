@@ -178,7 +178,7 @@ export default function Admin() {
                                 <button onClick={() => handleEdit(r)} style={{ marginRight: '5px' }}>Edit</button>
                                 <button onClick={() => handleDelete(r.receiptNumber)} style={{ color: 'red' }}>Delete</button>
                                 <div style={{ marginTop: '10px' }}>
-                                    <QRCodeSVG value={`${window.location.origin}/receipt/${r.receiptNumber}`} size={64} />
+                                    <QRCodeSVG value={`https://erca-gov-et.vercel.app/receipt/${r.receiptNumber}`} size={64} />
                                 </div>
                             </td>
                         </tr>
