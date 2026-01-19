@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { ReceiptService } from '../services/ReceiptService';
-import { QRCodeSVG } from 'qrcode.react';
+import { QRCodeCanvas } from 'qrcode.react';
 
 export default function Admin() {
     const [auth, setAuth] = useState(false);
@@ -47,6 +47,19 @@ export default function Admin() {
         if (window.confirm('Delete this receipt?')) {
             ReceiptService.delete(rNumber);
             loadReceipts();
+        }
+    };
+
+    const downloadQR = (receiptNumber) => {
+        const canvas = document.getElementById(`qr-${receiptNumber}`);
+        if (canvas) {
+            const pngUrl = canvas.toDataURL("image/png");
+            const downloadLink = document.createElement("a");
+            downloadLink.href = pngUrl;
+            downloadLink.download = `receipt-${receiptNumber}.png`;
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
         }
     };
 
@@ -176,9 +189,14 @@ export default function Admin() {
                             <td style={{ padding: '10px' }}>
                                 <button onClick={() => window.open(`/receipt/${r.receiptNumber}`, '_blank')} style={{ marginRight: '5px' }}>View</button>
                                 <button onClick={() => handleEdit(r)} style={{ marginRight: '5px' }}>Edit</button>
-                                <button onClick={() => handleDelete(r.receiptNumber)} style={{ color: 'red' }}>Delete</button>
+                                <button onClick={() => handleDelete(r.receiptNumber)} style={{ color: 'red', marginRight: '5px' }}>Delete</button>
+                                <button onClick={() => downloadQR(r.receiptNumber)} style={{ backgroundColor: '#4CAF50', color: 'white', border: 'none', padding: '2px 8px', borderRadius: '4px', cursor: 'pointer' }}>Download QR</button>
                                 <div style={{ marginTop: '10px' }}>
-                                    <QRCodeSVG value={`https://erca-gov-et.vercel.app/receipt/${r.receiptNumber}`} size={64} />
+                                    <QRCodeCanvas
+                                        id={`qr-${r.receiptNumber}`}
+                                        value={`https://erca-gov-et.vercel.app/receipt/${r.receiptNumber}`}
+                                        size={128}
+                                    />
                                 </div>
                             </td>
                         </tr>
