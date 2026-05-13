@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { QRCodeSVG } from 'qrcode.react';
@@ -19,20 +18,23 @@ export default function Receipt() {
 
     if (!data) {
         return (
-            <div style={{
-                display: 'flex',
-                justifyContent: 'center',
-                paddingTop: '100px',
-                fontFamily: 'Times New Roman, serif',
-                fontWeight: 'bold',
-                fontSize: '24px'
-            }}>
+            <div
+                style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    paddingTop: '100px',
+                    fontFamily: '"Times New Roman", Times, serif',
+                    fontWeight: 'bold',
+                    fontSize: '32px',
+                    color: 'black'
+                }}
+            >
                 INVALID RECEIPT
             </div>
         );
     }
 
-    // Styles for strict replication
+    // Updated styles to match first image exactly
     const containerStyle = {
         display: 'flex',
         flexDirection: 'column',
@@ -42,27 +44,34 @@ export default function Receipt() {
         color: 'black',
         backgroundColor: 'white',
         padding: '20px',
-        maxWidth: '400px', // Approximate receipt width
+        maxWidth: '500px',
         margin: '0 auto',
-        lineHeight: '1.2'
+        lineHeight: '1.15',
+        fontWeight: 'bold',
+        fontSize: '22px',
+        WebkitFontSmoothing: 'antialiased',
+        textRendering: 'optimizeLegibility'
     };
 
-    const boldStyle = {
+    const titleStyle = {
+        fontSize: '30px',
         fontWeight: 'bold'
     };
 
-    const largeStyle = {
-        fontSize: '18px',
+    const branchStyle = {
+        fontSize: '24px',
         fontWeight: 'bold'
     };
 
     const blankLine = {
-        height: '1.2em'
+        height: '0.7em'
     };
 
     return (
         <div style={containerStyle}>
-            <div style={largeStyle}>Ministry of Revenue: Valid Receipt</div>
+            <div style={titleStyle}>
+                Ministry of Revenue: Valid Receipt
+            </div>
 
             <div style={blankLine}></div>
 
@@ -76,14 +85,16 @@ export default function Receipt() {
 
             <div style={blankLine}></div>
 
-            <div>የግብር ክፍያ ቢሮ: የሰሜን ምዕራብ አዲስ አበባ አነስተኛ ግብር ከፋዮች ቅርንጫፍ</div>
-            <div>የግብር ክፍያ ቢሮ</div>
+            <div>
+                የግብር ክፍያ ቢሮ: የሰሜን ምዕራብ አዲስ አበባ አነስተኛ ግብር ከፋዮች
+            </div>
+            <div>ቅርንጫፍ</div>
 
             <div style={blankLine}></div>
 
-            <div style={boldStyle}>MOR-NORTH</div>
-            <div style={boldStyle}>WEST ADDIS ABEBA SMALL TAX</div>
-            <div style={boldStyle}>PAYERS BRANCH</div>
+            <div style={branchStyle}>MOR-NORTH</div>
+            <div style={branchStyle}>WEST ADDIS ABEBA SMALL TAX</div>
+            <div style={branchStyle}>PAYERS BRANCH</div>
 
             <div style={blankLine}></div>
 
@@ -92,10 +103,20 @@ export default function Receipt() {
 
             <div style={blankLine}></div>
 
-            <div>የንግድ ተቋም ስም: {data.enterpriseName}</div>
+            <div>
+                የንግድ ተቋም ስም: {data.enterpriseName}
+            </div>
 
             <div style={blankLine}></div>
-            <div style={blankLine}></div>
+
+            {/* Optional QR code at bottom
+            {receiptNumber && (
+                <QRCodeSVG
+                    value={receiptNumber}
+                    size={80}
+                    style={{ marginTop: '10px' }}
+                />
+            )} */}
         </div>
     );
 }
