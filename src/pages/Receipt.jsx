@@ -93,13 +93,13 @@ export default function Receipt() {
             <div style={blankLine}></div>
 
             <div style={branchStyle}>MOR-NORTH</div>
-            <div style={branchStyle}>WEST ADDIS ABEBA SMALL TAX</div>
+            <div style={branchStyle}>EAST ADDIS ABEBA SMALL TAX</div>
             <div style={branchStyle}>PAYERS BRANCH</div>
 
             <div style={blankLine}></div>
 
             <div>ቫት/VAT/ መለያ ቁጥር: {data.vatNumber}</div>
-            <div>ቲን/TIN/ ቁጥር: {data.tinNumber}</div>
+            <div>የቫት/VAT/ ቁጥር: {data.tinNumber}</div>
 
             <div style={blankLine}></div>
 
