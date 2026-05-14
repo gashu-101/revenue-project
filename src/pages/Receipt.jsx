@@ -86,7 +86,7 @@ export default function Receipt() {
             <div style={blankLine}></div>
 
             <div>
-                የግብር ክፍያ ቢሮ: የሰሜን ምዕራብ አዲስ አበባ አነስተኛ ግብር ከፋዮች
+                የግብር ክፍያ ቢሮ: የሰሜን ምስራቅ አዲስ አበባ አነስተኛ ግብር ከፋዮች
             </div>
             <div>ቅርንጫፍ</div>
 
